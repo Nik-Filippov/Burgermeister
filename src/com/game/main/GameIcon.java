@@ -45,6 +45,7 @@ public abstract class GameIcon {
     public int getHeight() {
         return iconHeight;
     }
+
     public long getExecutionTime(){
         return executionTime;
     }

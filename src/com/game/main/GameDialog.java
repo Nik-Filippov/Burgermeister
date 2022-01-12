@@ -118,7 +118,7 @@ public class GameDialog extends MouseAdapter {
                 MapGame.FRG += option1[1];
                 MapGame.GDR += option1[2];
                 MapGame.MARKS += option1[3];
-                System.out.println(MapGame.Berlin + " " + MapGame.FRG + " " + MapGame.GDR);
+                //System.out.println(MapGame.Berlin + " " + MapGame.FRG + " " + MapGame.GDR);
                 game.gameState = Game.STATE.MyMap;
                 MapGame.prevTime = System.currentTimeMillis();
                 lines.clear();

@@ -59,7 +59,7 @@ public class MainMenu extends MouseAdapter {
                 MapGame.FRG = Integer.parseInt(lines.get(2).substring(2));
                 MapGame.GDR = Integer.parseInt(lines.get(3).substring(2));
                 MapGame.MARKS = Integer.parseInt(lines.get(4).substring(2));
-                MapGame.currentDialogs = Handler.getCurrentIcons(MapGame.dayNumber);
+                MapGame.currentDayIcons = Handler.getCurrentIcons(MapGame.dayNumber);
                 MapGame.currentDialogIndex = 0;
 
                 Cutscene.eventIndex = 0;

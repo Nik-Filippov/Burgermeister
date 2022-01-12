@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -99,7 +98,7 @@ public class PauseMenu extends MouseAdapter {
                 MapGame.FRG = Integer.parseInt(lines.get(2).substring(2));
                 MapGame.GDR = Integer.parseInt(lines.get(3).substring(2));
                 MapGame.MARKS = Integer.parseInt(lines.get(4).substring(2));
-                MapGame.currentDialogs = Handler.getCurrentIcons(MapGame.dayNumber);
+                MapGame.currentDayIcons = Handler.getCurrentIcons(MapGame.dayNumber);
                 MapGame.currentDialogIndex = 0;
 
                 Cutscene.eventIndex = 0;

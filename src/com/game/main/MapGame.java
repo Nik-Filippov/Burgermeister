@@ -29,7 +29,7 @@ public class MapGame extends MouseAdapter {
 
     int pauseButtonX,pauseButtonY, pauseButtonWH, width, height;
 
-    public static ArrayList<GameIcon> currentDialogs = new ArrayList<>();
+    public static ArrayList<GameIcon> currentDayIcons = new ArrayList<>();
 
     public MapGame(Game game, Dimension defaultSize) {
         MapGame.game = game;
@@ -42,7 +42,7 @@ public class MapGame extends MouseAdapter {
         pauseButtonWH = (int)(0.0555 * width);
 
         for(int i = 0; i < Handler.getCurrentIcons(dayNumber).size(); i++){
-            MapGame.currentDialogs.add(i, Handler.getCurrentIcons(dayNumber).get(i));
+            currentDayIcons.add(i, Handler.getCurrentIcons(dayNumber).get(i));
         }
     }
 
@@ -56,10 +56,10 @@ public class MapGame extends MouseAdapter {
             for (GameIcon activeIcon : activeIcons) {
                 if (mouseOver(mx, my, activeIcon.getX(), activeIcon.getY(), activeIcon.getWidth(), activeIcon.getHeight())){
                     game.gameState = Game.STATE.Dialog;
-                    for(int i = 0; i < currentDialogs.size(); i++){
-                        if(currentDialogs.get(i).equals(activeIcon)){
+                    for(int i = 0; i < currentDayIcons.size(); i++){
+                        if(currentDayIcons.get(i).equals(activeIcon)){
                             currentDialogIndex = i;
-                            currentDialogs.remove(currentDialogIndex);
+                            currentDayIcons.remove(currentDialogIndex);
                         }
                     }
                     try {
@@ -84,7 +84,7 @@ public class MapGame extends MouseAdapter {
     public void render(Graphics g) throws IOException {
         if(timePassed == 0){
             //Render "Before" Cutscene
-            triggerCutscene(dayNumber, 0);
+            triggerCutscene(dayNumber);
         }
         else if (timePassed <= screenDuration) {
             //Time keeper
@@ -95,14 +95,14 @@ public class MapGame extends MouseAdapter {
             }
             //Pick active icons
             activeIcons.clear();
-            for (int i = 0; i < currentDialogs.size(); i++) {
-                    if (timePassed >= currentDialogs.get(i).getExecutionTime()
-                            && timePassed <= currentDialogs.get(i).getExecutionTime()
-                            + currentDialogs.get(i).getDuration()) {
-                        activeIcons.add(currentDialogs.get(i));
+            for (int i = 0; i < currentDayIcons.size(); i++) {
+                    if (timePassed >= currentDayIcons.get(i).getExecutionTime()
+                            && timePassed <= currentDayIcons.get(i).getExecutionTime()
+                            + currentDayIcons.get(i).getDuration()) {
+                        activeIcons.add(currentDayIcons.get(i));
                     }
             }
-            System.out.println(currentDialogs.size());
+            //System.out.println(currentDayIcons.size());
             //Render active icons
             for (GameIcon activeIcon : activeIcons) {
                 activeIcon.render(g, timePassed);
@@ -143,8 +143,20 @@ public class MapGame extends MouseAdapter {
             g.drawString("M: " + MARKS, width - 3 * pauseButtonX, (int) (pauseButtonY + 0.5 * pauseButtonWH));
         }
         else {
-            //Render "After" Cutscene
-            triggerCutscene(dayNumber, 1);
+            //If time is over
+            dayNumber++;
+            savedDayMetrics[0] = MapGame.Berlin;
+            savedDayMetrics[1] = MapGame.FRG;
+            savedDayMetrics[2] = MapGame.GDR;
+            savedDayMetrics[3] = MapGame.MARKS;
+            currentDayIcons.clear();
+            activeIcons.clear();
+            for(int i = 0; i < Handler.getCurrentIcons(dayNumber).size(); i++){
+                currentDayIcons.add(i, Handler.getCurrentIcons(dayNumber).get(i));
+            }
+            currentDialogIndex = 0;
+            timePassed = 0;
+            prevTime = System.currentTimeMillis();
         }
     }
 
@@ -152,9 +164,8 @@ public class MapGame extends MouseAdapter {
 
     }
 
-    public static void triggerCutscene(int dayNumber, int index){
+    public static void triggerCutscene(int dayNumber){
         Cutscene.dayNumber = dayNumber;
-        Cutscene.eventIndex = index;
         Cutscene.timePassed = 0;
         Cutscene.prevTime = System.currentTimeMillis();
         Cutscene.currentCutscenes = Handler.getFrames(dayNumber);

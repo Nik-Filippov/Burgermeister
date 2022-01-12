@@ -1,0 +1,6 @@
+1. Add popup windows with messages
+2. Add sound
+3. Add autosave option to settings window
+4. Add automatic text centering for dialog buttons
+5. Remove save button from pause menu if autosave is turned on and change it to settings (and vice versa)
+
