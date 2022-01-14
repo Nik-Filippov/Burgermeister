@@ -61,8 +61,4 @@ public class HelpMenu extends MouseAdapter {
         g.drawString("About the game", width / 2 - Game.strLength(g, "About the game") / 2,
                 (int)(0.15 * height));
     }
-
-    public void tick(){
-
-    }
 }

@@ -230,8 +230,4 @@ public class PauseMenu extends MouseAdapter {
         g.drawString("Quit", width / 2 - Game.strLength(g, "Quit") / 2,
                 height / 2 - winH / 2 + (int)(4.5 * buttonGap) + strHeight1 + 3 * buttonH + buttonH / 3 + strHeight2 / 3);
     }
-
-    public void tick(){
-
-    }
 }

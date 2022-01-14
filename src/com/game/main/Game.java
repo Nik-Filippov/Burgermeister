@@ -86,28 +86,11 @@ public class Game extends Canvas implements Runnable{
         win = new Window(preferredSize, "Bürgermeister", this);
     }
 
-    private void tick(){
-        if (gameState == STATE.MyMap){
-            map.tick();
+    public boolean mouseOver(int mx, int my, int x, int y, int width, int height){
+        if(mx > x &&  mx < x + width){
+            return my > y && my < y + height;
         }
-        else if(gameState == STATE.MainMenu){
-            menu.tick();
-        }
-        else if(gameState == STATE.Settings){
-            settings.tick();
-        }
-        else if(gameState == STATE.Help){
-            help.tick();
-        }
-        else if(gameState == STATE.PauseMenu){
-            pause.tick();
-        }
-        else if(gameState == STATE.Dialog){
-            gameDialog.tick();
-        }
-        else if(gameState == STATE.Cutscene){
-            cutscene.tick();
-        }
+        return false;
     }
 
     private void render() throws IOException {
@@ -193,7 +176,6 @@ public class Game extends Canvas implements Runnable{
             delta += (now - lastTime) / ns;
             lastTime = now;
             while(delta >= 1){
-                tick();
                 delta--;
             }
             if(running) {
@@ -208,7 +190,6 @@ public class Game extends Canvas implements Runnable{
             if(System.currentTimeMillis() - timer > 1000){
                 timer += 1000;
                 //System.out.println("FPS: " + frames);
-                //System.out.println(MapGame.dayNumber);
                 frames = 0;
             }
         }

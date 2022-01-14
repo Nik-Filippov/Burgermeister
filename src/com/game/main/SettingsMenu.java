@@ -61,9 +61,5 @@ public class SettingsMenu extends MouseAdapter {
         g.drawString("⬅", backButtonXY + backButtonWH / 2 - Game.strLength(g, "⬅") / 2,
                 backButtonXY + backButtonWH / 2 + Game.strHeight(g) / 3);
     }
-
-    public void tick(){
-
-    }
 }
 

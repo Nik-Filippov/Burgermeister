@@ -125,8 +125,4 @@ public class MainMenu extends MouseAdapter {
         g.drawRect(4 * buttonHorizontalGap + 3 * buttonWidth, buttonYCoord, buttonWidth, buttonHeight);
 
     }
-
-    public void tick(){
-
-    }
 }

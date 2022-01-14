@@ -5,7 +5,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Cutscene extends MouseAdapter {
     private Game game;
@@ -33,19 +32,10 @@ public class Cutscene extends MouseAdapter {
         int mx = e.getX();
         int my = e.getY();
         if(game.gameState == Game.STATE.Cutscene) {
-            if(mouseOver(mx, my, skipButtonX, skipButtonY, skipButtonWH, skipButtonWH)){
+            if(game.mouseOver(mx, my, skipButtonX, skipButtonY, skipButtonWH, skipButtonWH)){
                 timePassed = screenDuration - 1;
             }
         }
-    }
-
-    private boolean mouseOver(int mx, int my, int x, int y, int width, int height){
-        if(mx > x &&  mx < x + width){
-            if(my > y && my < y + height){
-                return true;
-            }
-        }
-        return false;
     }
 
     public void render(Graphics g) throws IOException {
@@ -81,10 +71,6 @@ public class Cutscene extends MouseAdapter {
 
         g.setColor(Color.WHITE);
         g.drawString("►", skipButtonX + skipButtonWH / 2 - Game.strLength(g, "►") / 2,
-                    skipButtonY + skipButtonWH / 2 + Game.strHeight(g) / 3);
-        }
-
-    public void tick(){
-
+                skipButtonY + skipButtonWH / 2 + Game.strHeight(g) / 3);
     }
 }

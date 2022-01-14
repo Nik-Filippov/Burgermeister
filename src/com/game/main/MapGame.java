@@ -15,7 +15,7 @@ public class MapGame extends MouseAdapter {
 
     public static int Berlin = 0, FRG = 0, GDR = 0, MARKS; //B, F, G, M in dialogs
 
-    public static ArrayList<GameIcon> activeIcons = new ArrayList<>();
+    public static ArrayList<BasicIcon> activeIcons = new ArrayList<>();
 
     //5 min -> 60000 millis -> Default session length
 
@@ -29,7 +29,7 @@ public class MapGame extends MouseAdapter {
 
     int pauseButtonX,pauseButtonY, pauseButtonWH, width, height;
 
-    public static ArrayList<GameIcon> currentDayIcons = new ArrayList<>();
+    public static ArrayList<BasicIcon> currentDayIcons = new ArrayList<>();
 
     public MapGame(Game game, Dimension defaultSize) {
         MapGame.game = game;
@@ -49,7 +49,7 @@ public class MapGame extends MouseAdapter {
             if (mouseOver(mx, my, pauseButtonX, pauseButtonY, pauseButtonWH, pauseButtonWH)) {
                 game.gameState = Game.STATE.PauseMenu;
             }
-            for (GameIcon activeIcon : activeIcons) {
+            for (BasicIcon activeIcon : activeIcons) {
                 if (mouseOver(mx, my, activeIcon.getX(), activeIcon.getY(), activeIcon.getWidth(), activeIcon.getHeight())){
                     game.gameState = Game.STATE.Dialog;
                     for(int i = 0; i < currentDayIcons.size(); i++){
@@ -68,7 +68,7 @@ public class MapGame extends MouseAdapter {
         }
     }
 
-    private boolean mouseOver(int mx, int my, int x, int y, int width, int height){
+    public static boolean mouseOver(int mx, int my, int x, int y, int width, int height){
         if(mx > x &&  mx < x + width){
             if(my > y && my < y + height){
                 return true;
@@ -99,7 +99,7 @@ public class MapGame extends MouseAdapter {
                     }
             }
             //Render active icons
-            for (GameIcon activeIcon : activeIcons) {
+            for (BasicIcon activeIcon : activeIcons) {
                 activeIcon.render(g, timePassed);
             }
 

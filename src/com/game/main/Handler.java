@@ -5,29 +5,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Handler {
-    private static ArrayList<ArrayList<GameIcon>> icons = new ArrayList<>();
+    private static ArrayList<ArrayList<BasicIcon>> icons = new ArrayList<>();
 
     //First layer - days, second layer - array of CutsceneFrames itself.
     private static ArrayList<ArrayList<CutsceneFrame>> frames = new ArrayList<>();
 
     public Handler(Game game, Dimension d) throws IOException {
         //Icons
-        ArrayList<GameIcon> d1 = new ArrayList<>();
-        ArrayList<GameIcon> d2 = new ArrayList<>();
-        ArrayList<GameIcon> d3 = new ArrayList<>();
-        ArrayList<GameIcon> d4 = new ArrayList<>();
+        ArrayList<BasicIcon> d1 = new ArrayList<>();
+        ArrayList<BasicIcon> d2 = new ArrayList<>();
+        ArrayList<BasicIcon> d3 = new ArrayList<>();
+        ArrayList<BasicIcon> d4 = new ArrayList<>();
 
         icons.add(0, new ArrayList<>());
-        d1.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 200, 200, 50, 50, d));
+        d1.add(new BasicIcon(game,0, 6000, 200, 200, 50, 50, d));
         //d1.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 200, 200, 50, 50, d));
         icons.add(1, d1);
-        d2.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 400, 400, 50, 50, d));
+        d2.add(new BasicIcon(game,0, 6000, 400, 400, 50, 50, d));
         //d2.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 200, 400, 50, 50, d));
         icons.add(2, d2);
-        d3.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 600, 600, 50, 50, d));
+        d3.add(new BasicIcon(game,0, 6000, 600, 600, 50, 50, d));
         //d3.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 400, 400, 50, 50, d));
         icons.add(3, d3);
-        d4.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 230, 600, 50, 50, d));
+        d4.add(new BasicIcon(game,0, 6000, 230, 600, 50, 50, d));
         //d4.add(new BasicIcon(game,0, 6000, ID.BasicIcon, 400, 400, 50, 50, d));
         icons.add(4, d4);
 
@@ -59,7 +59,7 @@ public class Handler {
         frames.add(4, interBefore);
     }
 
-    public static ArrayList<GameIcon> getCurrentIcons(int index){
+    public static ArrayList<BasicIcon> getCurrentIcons(int index){
         return icons.get(index);
     }
 

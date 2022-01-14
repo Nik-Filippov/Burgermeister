@@ -108,9 +108,8 @@ public class GameDialog extends MouseAdapter {
     public void mousePressed(MouseEvent e){
         int mx = e.getX();
         int my = e.getY();
-        System.out.println(System.currentTimeMillis() - clickTime);
         if(game.gameState == Game.STATE.Dialog && System.currentTimeMillis() - clickTime >= 300) {
-            if (mouseOver(mx, my,width / 2 - buttonW / 2, (int)(0.6 * height), buttonW, buttonH)) {
+            if (game.mouseOver(mx, my,width / 2 - buttonW / 2, (int)(0.6 * height), buttonW, buttonH)) {
                 MapGame.Berlin += option1[0];
                 MapGame.FRG += option1[1];
                 MapGame.GDR += option1[2];
@@ -119,7 +118,7 @@ public class GameDialog extends MouseAdapter {
                 MapGame.prevTime = System.currentTimeMillis();
                 lines.clear();
             }
-            else if(mouseOver(mx, my, width / 2 - buttonW / 2, (int)(0.6 * height) + buttonH, buttonW, buttonH)){
+            else if(game.mouseOver(mx, my, width / 2 - buttonW / 2, (int)(0.6 * height) + buttonH, buttonW, buttonH)){
                 MapGame.Berlin += option2[0];
                 MapGame.FRG += option2[1];
                 MapGame.GDR += option2[2];
@@ -128,7 +127,7 @@ public class GameDialog extends MouseAdapter {
                 MapGame.prevTime = System.currentTimeMillis();
                 lines.clear();
             }
-            else if(mouseOver(mx, my, width / 2 - buttonW / 2, (int)(0.6 * height) + 2 * buttonH, buttonW, buttonH)){
+            else if(game.mouseOver(mx, my, width / 2 - buttonW / 2, (int)(0.6 * height) + 2 * buttonH, buttonW, buttonH)){
                 MapGame.Berlin += option3[0];
                 MapGame.FRG += option3[1];
                 MapGame.GDR += option3[2];
@@ -137,7 +136,7 @@ public class GameDialog extends MouseAdapter {
                 MapGame.prevTime = System.currentTimeMillis();
                 lines.clear();
             }
-            else if(mouseOver(mx, my, width / 2 - buttonW / 2, (int)(0.6 * height) + 3 * buttonH, buttonW, buttonH)){
+            else if(game.mouseOver(mx, my, width / 2 - buttonW / 2, (int)(0.6 * height) + 3 * buttonH, buttonW, buttonH)){
                 MapGame.Berlin += option4[0];
                 MapGame.FRG += option4[1];
                 MapGame.GDR += option4[2];
@@ -147,15 +146,6 @@ public class GameDialog extends MouseAdapter {
                 lines.clear();
             }
         }
-    }
-
-    private boolean mouseOver(int mx, int my, int x, int y, int width, int height){
-        if(mx > x &&  mx < x + width){
-            if(my > y && my < y + height){
-                return true;
-            }
-        }
-        return false;
     }
 
     public void render(Graphics g) {
@@ -198,9 +188,5 @@ public class GameDialog extends MouseAdapter {
                 g.drawString(line, width / 2 - buttonW / 2, y);
             }
         }
-    }
-
-    public void tick(){
-
     }
 }

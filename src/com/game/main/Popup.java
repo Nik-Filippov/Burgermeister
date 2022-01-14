@@ -40,8 +40,4 @@ public class Popup extends MouseAdapter {
             
         }
     }
-
-    public void tick(){
-
-    }
 }
