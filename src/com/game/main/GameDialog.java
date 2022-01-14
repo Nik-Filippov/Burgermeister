@@ -18,6 +18,8 @@ public class GameDialog extends MouseAdapter {
     public static int[] option3 = new int[4];
     public static int[] option4 = new int[4];
 
+    private long clickTime = 0;
+
     BufferedReader br;
 
     ArrayList<String> lines = new ArrayList<>();
@@ -37,7 +39,7 @@ public class GameDialog extends MouseAdapter {
     }
     //Very important method that defines the dialog choice.
     public void setDialogParams(int dayNumber, int eventIndex) throws IOException {
-
+        clickTime = System.currentTimeMillis();
         br = new BufferedReader(new FileReader("Dialogs/"
                 + dayNumber + "." + eventIndex + ".txt"));
         String description;
@@ -106,8 +108,8 @@ public class GameDialog extends MouseAdapter {
     public void mousePressed(MouseEvent e){
         int mx = e.getX();
         int my = e.getY();
-
-        if(game.gameState == Game.STATE.Dialog) {
+        System.out.println(System.currentTimeMillis() - clickTime);
+        if(game.gameState == Game.STATE.Dialog && System.currentTimeMillis() - clickTime >= 300) {
             if (mouseOver(mx, my,width / 2 - buttonW / 2, (int)(0.6 * height), buttonW, buttonH)) {
                 MapGame.Berlin += option1[0];
                 MapGame.FRG += option1[1];

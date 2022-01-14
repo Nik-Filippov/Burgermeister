@@ -40,10 +40,6 @@ public class MapGame extends MouseAdapter {
         pauseButtonX = (int)(0.028 * width);
         pauseButtonY = (int)(0.16 * height);
         pauseButtonWH = (int)(0.0555 * width);
-
-        for(int i = 0; i < Handler.getCurrentIcons(dayNumber).size(); i++){
-            currentDayIcons.add(i, Handler.getCurrentIcons(dayNumber).get(i));
-        }
     }
 
     public void mousePressed(MouseEvent e){

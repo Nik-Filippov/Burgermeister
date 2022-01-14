@@ -38,6 +38,11 @@ public class MainMenu extends MouseAdapter {
                 MapGame.currentDialogIndex = 0;
                 MapGame.timePassed = 0;
                 MapGame.prevTime = System.currentTimeMillis();
+
+                for(int i = 0; i < Handler.getCurrentIcons(MapGame.dayNumber).size(); i++) {
+                    MapGame.currentDayIcons.add(i, Handler.getCurrentIcons(MapGame.dayNumber).get(i));
+                }
+
                 game.gameState = Game.STATE.MyMap;
             }
             //Load
