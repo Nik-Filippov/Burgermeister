@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Handler {
-    public static ArrayList<ArrayList<GameIcon>> icons = new ArrayList<>();
+    private static ArrayList<ArrayList<GameIcon>> icons = new ArrayList<>();
 
     //First layer - days, second layer - array of CutsceneFrames itself.
-    public static ArrayList<ArrayList<CutsceneFrame>> frames = new ArrayList<>();
+    private static ArrayList<ArrayList<CutsceneFrame>> frames = new ArrayList<>();
 
     public Handler(Game game, Dimension d) throws IOException {
         //Icons

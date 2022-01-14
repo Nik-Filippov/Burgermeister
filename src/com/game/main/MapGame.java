@@ -102,7 +102,6 @@ public class MapGame extends MouseAdapter {
                         activeIcons.add(currentDayIcons.get(i));
                     }
             }
-            //System.out.println(currentDayIcons.size());
             //Render active icons
             for (GameIcon activeIcon : activeIcons) {
                 activeIcon.render(g, timePassed);
@@ -164,7 +163,7 @@ public class MapGame extends MouseAdapter {
 
     }
 
-    public static void triggerCutscene(int dayNumber){
+    public void triggerCutscene(int dayNumber){
         Cutscene.dayNumber = dayNumber;
         Cutscene.timePassed = 0;
         Cutscene.prevTime = System.currentTimeMillis();

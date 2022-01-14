@@ -20,12 +20,9 @@ public class GameDialog extends MouseAdapter {
 
     BufferedReader br;
 
-    private int dayNumber = MapGame.dayNumber;
-    private int eventIndex = MapGame.currentDialogIndex;
-
     ArrayList<String> lines = new ArrayList<>();
 
-    public GameDialog(Game game, Dimension defaultSize) throws IOException {
+    public GameDialog(Game game, Dimension defaultSize) {
         this.game = game;
 
         width = (int)defaultSize.getWidth();
@@ -40,8 +37,6 @@ public class GameDialog extends MouseAdapter {
     }
     //Very important method that defines the dialog choice.
     public void setDialogParams(int dayNumber, int eventIndex) throws IOException {
-        this.dayNumber = dayNumber;
-        this.eventIndex = eventIndex;
 
         br = new BufferedReader(new FileReader("Dialogs/"
                 + dayNumber + "." + eventIndex + ".txt"));
@@ -118,7 +113,6 @@ public class GameDialog extends MouseAdapter {
                 MapGame.FRG += option1[1];
                 MapGame.GDR += option1[2];
                 MapGame.MARKS += option1[3];
-                //System.out.println(MapGame.Berlin + " " + MapGame.FRG + " " + MapGame.GDR);
                 game.gameState = Game.STATE.MyMap;
                 MapGame.prevTime = System.currentTimeMillis();
                 lines.clear();

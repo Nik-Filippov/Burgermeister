@@ -34,16 +34,15 @@ public class MainMenu extends MouseAdapter {
             //New Game
             if (mouseOver(mx, my,buttonHorizontalGap,
                     buttonYCoord, buttonWidth, buttonHeight)) {
-                game.gameState = Game.STATE.MyMap;
-                MapGame.prevTime = System.currentTimeMillis();
                 MapGame.dayNumber = 1;
                 MapGame.currentDialogIndex = 0;
                 MapGame.timePassed = 0;
+                MapGame.prevTime = System.currentTimeMillis();
+                game.gameState = Game.STATE.MyMap;
             }
             //Load
             else if (mouseOver(mx, my,2 * buttonHorizontalGap + buttonWidth,
                     buttonYCoord, buttonWidth, buttonHeight)) {
-
                 File dir = new File("Saves/");
                 File[] matches = dir.listFiles((dir1, name) -> name.startsWith("save") && name.endsWith(".txt"));
                 ArrayList<String> lines = new ArrayList<>();
